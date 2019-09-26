@@ -77,7 +77,9 @@ namespace handlebit {
 
     export enum HandleKnobPort {
         //% block="Port 1"
-        port1 = 0x01
+        port1 = 0x01,
+        //% block="Port 2"
+        port2 = 0x02
     }
 
     let lhRGBLight: HandleRGBLight.LHRGBLight;
@@ -816,9 +818,9 @@ export function handle_setFanSpeed(port: HandleFanPort, speed: number)
             case HandleKnobPort.port1:
                 knobValue = pins.analogReadPin(AnalogPin.P1);
                 break;
-//             case HandleKnobPort.port2:
-//                 knobValue = pins.analogReadPin(AnalogPin.P20);
-//                 break;
+            case HandleKnobPort.port2:
+                knobValue = pins.analogReadPin(AnalogPin.P20);
+                break;
         }
         knobValue = mapRGB(knobValue, 0, 1023, 0, 100);
         return knobValue;
@@ -831,6 +833,17 @@ export function handle_setFanSpeed(port: HandleFanPort, speed: number)
     export function littleStarMelody(): string[] {
         return ["C4:4", "C4:4", "G4:4", "G4:4", "A4:4", "A4:4", "G4:4", "F4:4", "F4:4", "E4:4", "E4:4", "D4:4", "D4:4", "C4:4", "G4:4", "G4:4", "F4:4", "F4:4", "E4:4", "E4:4", "D4:4", "G4:4", "G4:4", "F4:4", "F4:4", "E4:4", "E4:4", "D4:4", "C4:4", "C4:4", "G4:4", "G4:4", "A4:4", "A4:4", "G4:4", "F4:4", "F4:4", "E4:4", "E4:4", "D4:4", "D4:4", "C4:4"];
     }
-     
+  
+    /**
+    * Shake
+    *@param state is boolean, eg: true
+    */
+    //% weight=87 blockId=handle_shake  block="handle shake|%state"  
+    export function handle_shake(state: boolean) {
+        if (state)
+            pins.digitalWritePin(DigitalPin.P16, 1);
+        else
+            pins.digitalWritePin(DigitalPin.P16, 0);
+    }
 }
 
