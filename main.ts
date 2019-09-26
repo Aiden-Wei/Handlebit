@@ -10,7 +10,7 @@ namespace handlebit {
         //% blockId="Green" block="Green"
         Green = 0x02,
         //% blockId="Blue" block="Blue"
-		Blue = 0x03,
+	Blue = 0x03,
     }
         
     export enum HandleButton {
@@ -18,10 +18,6 @@ namespace handlebit {
         B1 = EventBusValue.MES_DPAD_BUTTON_2_DOWN,
         //% block="B2"
         B2 = EventBusValue.MES_DPAD_BUTTON_3_DOWN,
-        //% block="B3"
-        B3 = EventBusValue.MES_DPAD_BUTTON_4_DOWN,
-        //% block="B4"
-        B4 = EventBusValue.MES_DPAD_BUTTON_A_DOWN,
         //% block="Left joystick"
         JOYSTICK1 = EventBusValue.MES_DPAD_BUTTON_B_DOWN,
         //% block="Right joystick"
@@ -30,8 +26,6 @@ namespace handlebit {
 
 
     export enum HandleSensorValue {
-        //% block="Sound"
-        SOUND,
         //% block="Power"
         POWER,
         //% block="Left joystick X"
@@ -67,7 +61,6 @@ namespace handlebit {
         White = 0x05
     }
 
-
   export  enum HandleLights {
         //% block="Light 1"
         Light1 = 0x00,
@@ -84,29 +77,19 @@ namespace handlebit {
 
     export enum HandleKnobPort {
         //% block="Port 1"
-        port1 = 0x01,
-        //% block="Port 2"
-        port2 = 0x02
-    }
-
-    export enum HandleTouchPort {
-        //% block="Port 1"
-        port1 = 0x01,
-        //% block="Port 2"
-        port2 = 0x02       
+        port1 = 0x01
     }
 
     let lhRGBLight: HandleRGBLight.LHRGBLight;
-	let R_F: number;
-	let r_f: number;
-	
-	let g_f: number;
-	let G_F: number;
+    let R_F: number;
+    let r_f: number;
 
-	let b_f: number;
+    let g_f: number;
+    let G_F: number;
+
+    let b_f: number;
     let B_F: number;
 
-    let Sound: number = -1;
     let Power: number = -1;
     let JoystickX1: number = -1;
     let JoystickX2: number = -1;
@@ -182,7 +165,7 @@ namespace handlebit {
     }
 
 
-	const APDS9960_I2C_ADDR = 0x39;
+    const APDS9960_I2C_ADDR = 0x39;
     const APDS9960_ID_1 = 0xA8;
     const APDS9960_ID_2 = 0x9C;
     /* APDS-9960 register addresses */
@@ -566,15 +549,7 @@ namespace handlebit {
         
                             case 5:
                                 control.raiseEvent(EventBusSource.MES_DPAD_CONTROLLER_ID,HandleButton.B2);        
-                                break;    
-        
-                            case 7:
-                                control.raiseEvent(EventBusSource.MES_DPAD_CONTROLLER_ID,HandleButton.B3);       
-                                break;    
-        
-                            case 9:
-                                 control.raiseEvent(EventBusSource.MES_DPAD_CONTROLLER_ID,HandleButton.B4);  
-                                break;    
+                                break;       
         
                             case 11:
                                 control.raiseEvent(EventBusSource.MES_DPAD_CONTROLLER_ID,HandleButton.JOYSTICK1);           
@@ -588,18 +563,7 @@ namespace handlebit {
                                 break;    
                         }
                     }
-                }
-                else if (cmd.charAt(0).compare("S") == 0 && cmd.length == 3)
-                {
-                    let args: string = cmd.substr(1, 2);
-                    let argsInt: number = strToNumber(args);
-                    if (argsInt == -1)
-                    {
-                        handleCmd = "";
-                        return;
-                    }  
-                    Sound = argsInt;
-                }    
+                }   
                 // else if (cmd.charAt(0).compare("L") == 0 && cmd.length == 3)
                 // {
                 //     let args: string = cmd.substr(1, 2);
@@ -734,7 +698,6 @@ namespace handlebit {
         let value: number = 0;
         switch (type)
         {
-            case HandleSensorValue.SOUND: value = Sound; break;
             case HandleSensorValue.POWER: value = Power; break;       
             case HandleSensorValue.JOYSTICK_X1: value = JoystickX1; break;      
             case HandleSensorValue.JOYSTICK_Y1: value = JoystickY1;break;   
@@ -860,28 +823,6 @@ export function handle_setFanSpeed(port: HandleFanPort, speed: number)
         knobValue = mapRGB(knobValue, 0, 1023, 0, 100);
         return knobValue;
     }
-
-    /**
-     * Check touch button status
-     */
-    //% weight=74 blockId=handle_getTouchValue block="The touch button |port %port| is pressd"
-    export function handle_getTouchValue(port: HandleTouchPort):boolean
-    {
-        let value: number;
-        if(port == HandleTouchPort.port1)
-            value = pins.digitalReadPin(DigitalPin.P1);
-        else if (port == HandleTouchPort.port2)
-            value = pins.digitalReadPin(DigitalPin.P20);
-        if (value == 0)
-        {
-            return true;   
-        }
-        else
-       {
-           return false;  
-        }
-        
-    }
     
     /**
      *  The Melody of Little star   
@@ -890,7 +831,6 @@ export function handle_setFanSpeed(port: HandleFanPort, speed: number)
     export function littleStarMelody(): string[] {
         return ["C4:4", "C4:4", "G4:4", "G4:4", "A4:4", "A4:4", "G4:4", "F4:4", "F4:4", "E4:4", "E4:4", "D4:4", "D4:4", "C4:4", "G4:4", "G4:4", "F4:4", "F4:4", "E4:4", "E4:4", "D4:4", "G4:4", "G4:4", "F4:4", "F4:4", "E4:4", "E4:4", "D4:4", "C4:4", "C4:4", "G4:4", "G4:4", "A4:4", "A4:4", "G4:4", "F4:4", "F4:4", "E4:4", "E4:4", "D4:4", "D4:4", "C4:4"];
     }
-    
-    
+     
 }
 
