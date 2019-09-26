@@ -68,7 +68,7 @@ namespace handlebit {
 
     export enum HandleKnobPort {
         //% block="Port 1"
-        port1 = 0x01,
+        port1 = 0x01
     }
 
     let lhRGBLight: HandleRGBLight.LHRGBLight;
