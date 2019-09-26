@@ -95,7 +95,7 @@ namespace handlebit {
       */
     //% weight=100 blockId=handlebitInit block="Initialize Handlebit"
     export function handlebitInit() {
-        // initRGBLight();
+        initRGBLight();
         initColorSensor();
         serial.redirect(
             SerialPin.P12,
