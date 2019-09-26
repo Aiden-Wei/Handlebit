@@ -816,9 +816,9 @@ export function handle_setFanSpeed(port: HandleFanPort, speed: number)
             case HandleKnobPort.port1:
                 knobValue = pins.analogReadPin(AnalogPin.P1);
                 break;
-            case HandleKnobPort.port2:
-                knobValue = pins.analogReadPin(AnalogPin.P20);
-                break;
+//             case HandleKnobPort.port2:
+//                 knobValue = pins.analogReadPin(AnalogPin.P20);
+//                 break;
         }
         knobValue = mapRGB(knobValue, 0, 1023, 0, 100);
         return knobValue;
