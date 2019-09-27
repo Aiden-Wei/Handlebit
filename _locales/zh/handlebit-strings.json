@@ -49,5 +49,6 @@
 	"handlebit.handle_getKnobValue|block":"获取旋钮|%port|值(0~100)",
 	"handlebit.handle_getTouchValue|block":"触摸传感器|%port|被按下",
 	"handlebit.HandleTouchPort.port1|block":"接口1",
-	"handlebit.HandleTouchPort.port2|block":"接口2"
+	"handlebit.HandleTouchPort.port2|block":"接口2",
+	"handlebit.handle_shake|block":"手柄震动|%state"
 }
