@@ -24,7 +24,6 @@ namespace handlebit {
         JOYSTICK2 = EventBusValue.MES_DPAD_BUTTON_C_DOWN
     }
 
-
     export enum HandleSensorValue {
         //% block="Left joystick X"
         JOYSTICK_X1,
@@ -44,6 +43,13 @@ namespace handlebit {
     export enum colorSensorPort {
         //% block="Port 2"
         port2 = 0x02
+    }
+	
+    export enum ShakeState {
+        //% block="ON"
+        ON,
+        //% block="OFF"
+        OFF
     }
 
   export  enum HandleLights {
@@ -741,8 +747,8 @@ namespace handlebit {
     *@param state is boolean, eg: true
     */
     //% weight=87 blockId=handle_shake  block="handle shake|%state"  
-    export function handle_shake(state: boolean) {
-        if (state)
+    export function handle_shake(state: ShakeState) {
+        if (state == ShakeState.ON)
             pins.digitalWritePin(DigitalPin.P16, 1);
         else
             pins.digitalWritePin(DigitalPin.P16, 0);
