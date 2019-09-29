@@ -29,6 +29,8 @@
 	"handlebit.HandleSensorValue.JOYSTICK_Y1|block":"左摇杆Y",
 	"handlebit.HandleSensorValue.JOYSTICK_X2|block":"右摇杆X",
 	"handlebit.HandleSensorValue.JOYSTICK_Y2|block":"右摇杆Y",
+	"handlebit.ShakeState.ON|block":"开启", 
+	"handlebit.ShakeState.OFF|block":"关闭", 
 	"handlebit.onHandleButtonPressed|block":"当手柄按键|%button|按下",
 	"handlebit.handle_getHandleSensorValue|block":"手柄|%type|传感器值",
 	"handlebit.setLedBrightness|block":"设置灯光亮度|%brightness|级",
