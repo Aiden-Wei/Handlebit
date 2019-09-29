@@ -46,6 +46,15 @@ namespace handlebit {
         port2 = 0x02
     }
 
+  export  enum HandleLights {
+        //% block="Light 1"
+        Light1 = 0x00,
+        //% block="Light 2"
+        Light2 = 0x01,
+        //% block="All"
+        All = 0x02
+    }
+	
     export enum handle_Colors {
         //% block="Red"
         Red = 0x01,
